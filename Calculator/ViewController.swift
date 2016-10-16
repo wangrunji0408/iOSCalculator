@@ -13,7 +13,7 @@ class ViewController: UIViewController {
 	@IBOutlet weak var label: UILabel!
 	var typing = false;
 	
-	@IBAction func tapButton(_ sender: UIButton) {
+	@IBAction func labelAppend(_ sender: UIButton) {
 		let title = sender.currentTitle!
 		if typing
 		{
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 		}
 		typing = true
 	}
-	@IBAction func tap2(_ sender: UIButton) {
+	@IBAction func operation(_ sender: UIButton) {
 		if let title = sender.currentTitle
 		{
 			if title == "π"
