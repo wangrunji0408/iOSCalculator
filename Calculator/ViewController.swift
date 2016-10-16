@@ -10,8 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
 
-	@IBOutlet weak var label: UILabel!
-	var typing = false;
+	@IBOutlet private weak var label: UILabel!
+	
+	private var typing = false;
+	private var brain = CalculatorBrain()
+	
+	private var currentNumber: Double {
+		get {
+			return Double(label.text!)!
+		}
+		set {
+			label.text = String(newValue)
+		}
+	}
 	
 	@IBAction func labelAppend(_ sender: UIButton) {
 		let title = sender.currentTitle!
@@ -26,14 +37,18 @@ class ViewController: UIViewController {
 		}
 		typing = true
 	}
+	
 	@IBAction func operation(_ sender: UIButton) {
-		if let title = sender.currentTitle
+		if typing
 		{
-			if title == "π"
-			{
-				label.text = String(M_PI)
-			}
+			brain.setOperand(operand: currentNumber)
+			typing = false
 		}
+		if let symbol = sender.currentTitle
+		{
+			brain.performOperation(symbol: symbol)
+		}
+		currentNumber = brain.result
 	}
 
 }
